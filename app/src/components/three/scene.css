@@ -1,0 +1,70 @@
+.legendbox{
+    position: absolute;
+    top: 1em;
+    right: 1em; 
+    min-width: 10em;
+    background: rgba(179, 177, 177, 0.8);
+    padding: 10px 10px 10px 10px;
+}
+
+.chartdescription{
+    position: absolute;
+    top: 1em;
+    left: 1em; 
+}
+
+.zoombox{
+    position: absolute;
+    /* background: #fff; */
+    bottom: 1em;
+    left: 1em; 
+    border: 1px solid grey;
+    /* box-shadow: rgba(92, 91, 91, 0.2) 2px 2px; */
+}
+
+.legendtitle{
+    background: rgba(253, 253, 253, 0.9);
+    padding: 5px 0px 5px 5px;
+    color: #333232 ;
+}
+.legendcolorbox{
+    width: 1em;
+    height: 1em;
+    border: 1px solid rgba(90, 88, 88, 0.9) ;
+}
+.legendtext{
+    /* padding: -5px 0px 0px 0px; */
+}
+.legendrow{
+    /* border: 1px solid white; */
+    /* border-bottom: 1px dashed rgba(211, 211, 211, 0.8); */
+    padding: 0px 0px 8px 0px;
+    margin: 1px 0px 0px 0px;
+    line-height: 0.5em;
+}
+.tooltipimg{
+    height: 7em;
+    min-width: 100%; 
+    object-fit: cover;
+    
+}
+
+.tooltip{
+    position: absolute;
+    display: none;
+    z-index: 100000;
+    box-shadow: 3px 3px 3px rgba(170, 169, 169, 0.589);
+}
+.tooltipbox{
+    
+}
+
+.tooltiptitle{
+    padding: 5px;
+    background: rgba(252, 252, 252, 0.8);
+    /* border: 1px solid grey; */
+    
+    border-bottom: 4px solid #0062FF;
+    /* margin-bottom: 5px; */
+
+}
