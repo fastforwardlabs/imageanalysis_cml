@@ -11,7 +11,7 @@ import React, { Component } from "react";
 import { Route, HashRouter } from "react-router-dom";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
-import SemanticEx from "./semanticex/SemanticEx";
+import SemanticEx from "./semanticexo/SemanticEx";
 import { createBrowserHistory } from "history";
 
 const history = createBrowserHistory({
