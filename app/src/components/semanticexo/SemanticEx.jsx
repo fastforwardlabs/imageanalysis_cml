@@ -8,9 +8,10 @@
  */
 
 import React, { useState, useEffect } from "react";
-import { Modal, Toggle, Tooltip } from "carbon-components-react";
+import { Toggle } from "carbon-components-react";
 import "./semanticex.css";
 import DatasetView from "./datasetview/DatasetView";
+import { shuffleData } from "../helperfunctions/HelperFunctions";
 
 export default function SemanticEx() {
   //load useful data
@@ -19,18 +20,36 @@ export default function SemanticEx() {
   const datasetViewDetails = require("../../assets/semsearch/datasetdictionary.json");
 
   const topSimilar = 15;
+  console.log(modelViewDetails);
 
   //   specify state values and setters
   const [selectedDataset, setSelectedDataset] = useState(0);
+  const [selectedModel, setSelectedModel] = useState(0);
+  const [selectedDistanceMetric, setSelectedDistanceMetric] = useState(0);
+  const [selectedLayer, setSelectedLayer] = useState(0);
   const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
+
   useEffect(() => {
-    // Update the document title using the browser API
     document.title = `ConvNet Playground | Semantic Search Explorer`;
   });
 
   const datasetInfo = modelViewDetails["datasets"][selectedDataset];
   const datasetContent = datasetViewDetails.classes[datasetInfo.name];
-
+  const selectedDatasetName = modelViewDetails.datasets[selectedDataset].name;
+  const selectedModelName = modelViewDetails.models[selectedModel].name;
+  const selectedDistanceMetricName =
+    modelViewDetails.metrics[selectedDistanceMetric];
+  const selectedLayerName =
+    modelViewDetails.models[selectedModel].layers[selectedLayer].name;
+  const similarityPath =
+    selectedDatasetName +
+    "/" +
+    selectedModelName +
+    "/" +
+    selectedDistanceMetricName +
+    "/" +
+    selectedLayerName +
+    ".json";
   function toggleAdvancedOptions(e) {
     // registerGAEvent(
     //   "semanticsearch",
@@ -117,8 +136,11 @@ export default function SemanticEx() {
 
       <DatasetView
         data={datasetContent}
+        dataRandom={shuffleData(datasetContent, datasetInfo)}
+        similarityPath={similarityPath}
         meta={datasetInfo}
         selectedDataset={selectedDataset}
+        // setSelectedDataset={setSelectedDataset}
       ></DatasetView>
     </div>
   );

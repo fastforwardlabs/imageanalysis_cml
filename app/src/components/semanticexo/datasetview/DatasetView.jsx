@@ -10,33 +10,41 @@
 import React, { useState, useEffect } from "react";
 import { Tabs, Tab } from "carbon-components-react";
 import "./datasetview.css";
+import SimilarityView from "../similarityview/SimilarityView";
+import { loadJSONData } from "../../helperfunctions/HelperFunctions";
 
 export default function DatasetView(props) {
-  console.log(props.meta);
-  let datasetContent = [];
-  const imageBasePath = process.env.PUBLIC_URL + "/assets/semsearch/datasets/";
-  for (const row of Object.keys(props.data)) {
-    for (const i of props.data[row]) {
-      const imagePath = imageBasePath + props.meta.name + "/" + i + ".jpg";
-      datasetContent.push(imagePath);
-    }
-  }
-  const allData = datasetContent.map((data, index) => {
+  const [selectedImage, setSelectedImage] = useState(0);
+
+  useEffect(() => {
+    console.log("re rendereed effect called");
+    const similarityPath =
+      process.env.PUBLIC_URL +
+      "/assets/semsearch/similarity/" +
+      props.similarityPath;
+    let loadedJSON = loadJSONData(similarityPath);
+    loadedJSON.then(function (data) {
+      if (data) {
+        console.log(data);
+      }
+    });
+  }, []);
+  const allData = props.dataRandom.map((data, index) => {
     return (
       <div
         key={index + "winper"}
         className="iblock similarityfullbox mr5 mb5 positionrelative"
       >
         <img
-          key={data + "image" + index}
-          // onClick={this.clickSimilarImage.bind(this)}
-          src={data}
+          key={"image" + index}
+          onClick={() => setSelectedImage(index)}
+          src={data.path}
           alt=""
           className={
             "simiimage clickable rad2 " +
-            (index + "" === props.selectedDataset + "" ? "active" : "")
+            (index + "" === selectedImage + "" ? "active" : "")
           }
-          indexvalue={index}
+          indexvalue={data.index}
         />
       </div>
     );
@@ -51,6 +59,7 @@ export default function DatasetView(props) {
 
   return (
     <div className="mt10">
+      <SimilarityView></SimilarityView>
       <Tabs selected={0}>
         <Tab id="tab-1" label="All Data">
           <div className="some-content">
