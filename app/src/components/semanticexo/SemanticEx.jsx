@@ -10,14 +10,26 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Toggle, Tooltip } from "carbon-components-react";
 import "./semanticex.css";
+import DatasetView from "./datasetview/DatasetView";
 
 export default function SemanticEx() {
+  //load useful data
+
+  const modelViewDetails = require("../../assets/semsearch/details.json");
+  const datasetViewDetails = require("../../assets/semsearch/datasetdictionary.json");
+
   const topSimilar = 15;
+
+  //   specify state values and setters
+  const [selectedDataset, setSelectedDataset] = useState(0);
   const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
   useEffect(() => {
     // Update the document title using the browser API
     document.title = `ConvNet Playground | Semantic Search Explorer`;
   });
+
+  const datasetInfo = modelViewDetails["datasets"][selectedDataset];
+  const datasetContent = datasetViewDetails.classes[datasetInfo.name];
 
   function toggleAdvancedOptions(e) {
     // registerGAEvent(
@@ -102,6 +114,12 @@ export default function SemanticEx() {
           </div>
         </div>
       </div>
+
+      <DatasetView
+        data={datasetContent}
+        meta={datasetInfo}
+        selectedDataset={selectedDataset}
+      ></DatasetView>
     </div>
   );
 }
