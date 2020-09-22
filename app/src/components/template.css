@@ -28,6 +28,12 @@
 .mynotif {
   border-left: 4px #054ada solid;
 }
+.underline {
+  border-bottom: 1px dashed rgb(196, 193, 193);
+}
+.uppercase {
+  text-transform: uppercase;
+}
 .unselectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -52,9 +58,7 @@
   background: rgba(209, 209, 209, 0.3);
 }
 .lightbluehightlight {
-  padding: 10px;
   background: #edf4ff;
-  margin: 0px 0px 0px 0px;
 }
 
 .orangehighlight {

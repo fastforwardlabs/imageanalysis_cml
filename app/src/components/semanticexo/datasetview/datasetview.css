@@ -36,3 +36,8 @@
   /* height: 6.2em; 
     width: 6.2em; */
 }
+
+.datasetdivbox {
+  max-height: 30em;
+  overflow: scroll;
+}

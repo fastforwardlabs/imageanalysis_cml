@@ -68,6 +68,54 @@ export default function DatasetView(props) {
 
   return (
     <div className="mt10">
+      {/* top results */}
+      {/* show top results panel and content */}
+      {props.selections.show.similarDrawer && (
+        <div>
+          <div className="unselectable mt10    flex ">
+            <div
+              // onClick={props.selections.topSimilar}
+              className=" iblock clickable greymoreinfo flexfull minwidth485 p10"
+            >
+              {" "}
+              <strong>
+                {" "}
+                {!props.selections.show.similarDrawer && (
+                  <span>&#x25BC; </span>
+                )}{" "}
+                {props.selections.show.similarDrawer && <span>&#x25B2; </span>}{" "}
+              </strong>
+              <strong>Top {props.selections.topSimilar} results </strong> based
+              on your search configuration
+              <span className="smalldesc">
+                {" "}
+                [<strong> MODEL: </strong>{" "}
+                {props.selections.model.name.toUpperCase()} |
+                <strong> LAYER: </strong> {props.selections.layer.name} |
+                <strong> DISTANCE METRIC: </strong>{" "}
+                {props.selections.metric.toUpperCase()} ]
+              </span>
+            </div>
+
+            <div
+              // onClick={this.toggleShowCompare.bind(this)}
+              className={
+                " boldtext greenmoreinfo clickable bluehighlight justifycenter p10 flex flexcolumn " +
+                (props.selections.show.advanced ? "" : "displaynone")
+              }
+            >
+              Compare Models
+            </div>
+
+            {/* <div className="iblock   ">
+                        <div className="iblock mr5"> <span className="boldtext"> {this.state.modelsList[this.state.selectedmodel].name.toUpperCase()} </span></div>
+                        <div className="iblock">
+                            <div className="smalldesc">  LAYER {this.state.modelsList[this.state.selectedmodel].layers[this.state.selectedlayer].layer_index} / {this.state.modelsList[this.state.selectedmodel].numlayers} </div>
+                        </div>
+                    </div> */}
+          </div>
+        </div>
+      )}
       {similarityArray && (
         <SimilarityView
           selectedImage={selectedImage}
@@ -78,7 +126,7 @@ export default function DatasetView(props) {
       )}
       <Tabs selected={0}>
         <Tab id="tab-1" label="All Data">
-          <div className="some-content">
+          <div className="some-content scrollwindow  datasetdivbox">
             {datasetTitle}
             {allData}
           </div>

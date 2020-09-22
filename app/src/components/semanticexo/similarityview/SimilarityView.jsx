@@ -16,6 +16,7 @@ import {
 } from "../../helperfunctions/HelperFunctions";
 
 export default function SimilarityView(props) {
+  //TODO do we want to do something with incorrect results? e.g. visualize differently?
   useEffect(() => {
     // Update the document title using the browser API
     // document.title = `You clicked ${count} times`;
@@ -27,11 +28,30 @@ export default function SimilarityView(props) {
     props.selections.dataset.name +
     "/";
   const selectedImagePath = imageBasePath + props.selectedImage + ".jpg";
-  const selectedCat = "";
-  const modelScore = 1;
-  const totalScore = 1;
-  const simCount = 0;
+  const selectedCat = props.selections.dictionary[props.selectedImage];
+
   const topSimilar = props.selections.topSimilar;
+  let simCount = 0;
+  let modelScore = 0;
+  let totalScore = 0;
+  let incorrectResults = [];
+
+  for (var i in props.similarityArray.slice(1, topSimilar + 1)) {
+    console.log(
+      String(selectedCat),
+      String(props.selections.dictionary[props.similarityArray[i][0]])
+    );
+    if (
+      String(selectedCat) ===
+      String(props.selections.dictionary[props.similarityArray[i][0]])
+    ) {
+      simCount++;
+      modelScore += (topSimilar - i) / topSimilar;
+    } else {
+      incorrectResults.push(props.similarityArray[i]);
+    }
+    totalScore += (topSimilar - i) / topSimilar;
+  }
 
   // console.log(selectedImagePath);
 
@@ -82,7 +102,7 @@ export default function SimilarityView(props) {
                 className="mainsimilarityimage rad4  iblock"
                 alt=""
               />
-              <div className="mt5  mainsimilaritytitle   lightbluehightlight">
+              <div className="mt5  mainsimilaritytitle  p10  lightbluehightlight">
                 <div className="boldtext iblock mediumdesc mr5">
                   {" "}
                   SELECTED IMAGE{" "}

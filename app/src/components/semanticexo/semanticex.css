@@ -4,3 +4,35 @@
   padding-bottom: 10px;
   /* border: 1px solid  rgba(209, 209, 209, 0.9); */
 }
+
+.greenmoreinfo {
+  background: rgba(37, 161, 72, 1);
+  color: white;
+}
+.greenmoreinfo:hover {
+  background: rgb(34, 153, 68);
+}
+
+.greenmoreinfo:active {
+  background: rgb(27, 110, 49);
+}
+
+.greymoreinfo {
+  background: rgba(209, 209, 209, 0.9);
+}
+.greymoreinfo:hover {
+  background: rgb(187, 187, 187);
+}
+.greymoreinfo:active {
+  background: rgb(155, 155, 155);
+}
+
+.greytab.active {
+  /* background: rgb(155, 155, 155); */
+  /* color:white; */
+  border-bottom: 4px solid #0062ff;
+}
+
+.greytab {
+  border-bottom: 4px solid #cdcdcd;
+}
