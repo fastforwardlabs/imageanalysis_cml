@@ -15,20 +15,29 @@ import { loadJSONData } from "../../helperfunctions/HelperFunctions";
 
 export default function DatasetView(props) {
   const [selectedImage, setSelectedImage] = useState(0);
+  const [similarityArray, setSimilarityArray] = useState(null);
+
+  const similarityPath =
+    props.selections.basePath +
+    "/assets/semsearch/similarity/" +
+    props.selections.dataset.name +
+    "/" +
+    props.selections.model.name +
+    "/" +
+    props.selections.metric +
+    "/" +
+    props.selections.layer.name +
+    ".json";
 
   useEffect(() => {
     console.log("re rendereed effect called");
-    const similarityPath =
-      process.env.PUBLIC_URL +
-      "/assets/semsearch/similarity/" +
-      props.similarityPath;
     let loadedJSON = loadJSONData(similarityPath);
     loadedJSON.then(function (data) {
       if (data) {
-        console.log(data);
+        setSimilarityArray(data);
       }
     });
-  }, []);
+  }, [similarityPath]);
   const allData = props.dataRandom.map((data, index) => {
     return (
       <div
@@ -37,12 +46,12 @@ export default function DatasetView(props) {
       >
         <img
           key={"image" + index}
-          onClick={() => setSelectedImage(index)}
+          onClick={() => setSelectedImage(data.index)}
           src={data.path}
           alt=""
           className={
             "simiimage clickable rad2 " +
-            (index + "" === selectedImage + "" ? "active" : "")
+            (data.index + "" === selectedImage + "" ? "active" : "")
           }
           indexvalue={data.index}
         />
@@ -59,7 +68,13 @@ export default function DatasetView(props) {
 
   return (
     <div className="mt10">
-      <SimilarityView></SimilarityView>
+      {similarityArray && (
+        <SimilarityView
+          selectedImage={selectedImage}
+          similarityArray={similarityArray[selectedImage]}
+          selections={props.selections}
+        ></SimilarityView>
+      )}
       <Tabs selected={0}>
         <Tab id="tab-1" label="All Data">
           <div className="some-content">

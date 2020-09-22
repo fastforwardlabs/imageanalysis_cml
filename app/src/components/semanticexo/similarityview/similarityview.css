@@ -43,3 +43,43 @@
 .wscore {
   line-height: 1.3em;
 }
+
+.outersimbar {
+  background: rgb(120, 168, 247);
+  height: 4px;
+}
+
+.outersimbarorange {
+  height: 4px;
+  background: rgb(255, 166, 0, 0.5);
+}
+
+.innersimbar {
+  background: #0062ff;
+  height: 4px;
+}
+
+.innersimbarorange {
+  background: rgb(255, 166, 0);
+  height: 4px;
+}
+
+.similarityscorebox {
+  position: absolute;
+  top: 3em;
+  left: 0em;
+  font-weight: bold;
+  pointer-events: none;
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+}
+
+.similarityfullbox:hover > .similarityscorebox {
+  opacity: 1;
+}
+
+.sliderbox.topconfig.open {
+  height: 14.3em;
+  overflow: hidden;
+}
