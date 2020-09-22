@@ -72,6 +72,7 @@ export default function DatasetView(props) {
         <SimilarityView
           selectedImage={selectedImage}
           similarityArray={similarityArray[selectedImage]}
+          setSelectedImage={setSelectedImage}
           selections={props.selections}
         ></SimilarityView>
       )}

@@ -16,8 +16,6 @@ import {
 } from "../../helperfunctions/HelperFunctions";
 
 export default function SimilarityView(props) {
-  const [selectedImage, setSelectedImage] = useState(0);
-
   useEffect(() => {
     // Update the document title using the browser API
     // document.title = `You clicked ${count} times`;
@@ -52,7 +50,7 @@ export default function SimilarityView(props) {
         <img
           key={alldata[0] + "image" + alldata[0]}
           // onMouseOver={this.hoverSimilarImage.bind(this)}
-          // onClick={this.clickSimilarImage.bind(this)}
+          onClick={() => props.setSelectedImage(alldata[0])}
           src={imagePath}
           alt=""
           className={"simiimage clickable rad2 "}
