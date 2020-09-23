@@ -164,24 +164,26 @@ export default function ConfigView(props) {
       <div className={" " + (show.getter.advanced ? "" : " displaynone")}>
         {/* config panel and content */}
         <div
-          onClick={() =>
-            show.setter.advancedDrawer(!show.getter.advancedDrawer)
-          }
-          className="unselectable mt10 p10 clickable  flex greymoreinfo"
+          // onClick={() =>
+          //   show.setter.advancedDrawer(!show.getter.advancedDrawer)
+          // }
+          className="unselectable mt10 p10   flex lightgreyhighlight"
         >
           <div className="iblock flexfull minwidth485">
-            {" "}
-            <strong>
+            {/* <strong>
               {" "}
               {!show.getter.advancedDrawer && <span>&#x25BC; </span>}{" "}
               {show.getter.advancedDrawer && <span>&#x25B2; </span>}{" "}
-            </strong>{" "}
-            Search Configuration{" "}
+            </strong>{" "} */}
+            <strong> Advanced Options</strong>
           </div>
           <div className="iblock   ">
             <div className="iblock mr5">
               {" "}
-              <span className="boldtext"> {selections.dataset.name}</span>
+              <span className="boldtext uppercase">
+                {" "}
+                {selections.dataset.name}
+              </span>
             </div>
             <div className="iblock">
               <div className="smalldesc"> DATASET </div>
@@ -194,29 +196,31 @@ export default function ConfigView(props) {
           <div
             style={{ zIndex: 500 }}
             className={
-              "flex modelconfigdiv p10 " +
+              "flex  modelconfigdiv p10 " +
               (show.getter.advancedDrawer ? "" : " displaynone")
             }
           >
-            <div className="flex2 mr10">
-              <div className=" pb10 sectiontitle">
-                <div className="iblock">Select Dataset</div>
-                <div className="iblock"></div>
-              </div>
-              <div className="horrule mb10"></div>
-              <div className=" datasetselectdiv scrollwindow layerwindow">
-                {datasetImageList}
-              </div>
-              <div className="">
-                <div className=" iblock boldtext  boldtext datasetdescription mr10 mb5  p10 greyhighlight">
-                  {selections.dataset.name.toUpperCase()}
+            <div className="flex2  mr10">
+              <div className="h100 flex flexcolumn ">
+                <div className=" pb10 sectiontitle">
+                  <div className="iblock">Select Dataset</div>
+                  <div className="iblock"></div>
                 </div>
-                <div
+                <div className="horrule mb10"></div>
+                <div className="flexfull datasetselectdiv scrollwindow layerwindow">
+                  {datasetImageList}
+                </div>
+                <div className="">
+                  <div className=" iblock boldtext  boldtext datasetdescription mr10   p10 greyhighlight">
+                    {selections.dataset.name.toUpperCase()}
+                  </div>
+                  {/* <div
                   // onClick={this.toggleDatasetModal.bind(this)}
                   className="iblock p10 greyhighlight clickable unselectable greymoreinfo"
                 >
                   {" "}
                   ? More Info{" "}
+                </div> */}
                 </div>
               </div>
             </div>

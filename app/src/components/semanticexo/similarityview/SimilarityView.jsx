@@ -57,11 +57,18 @@ export default function SimilarityView(props) {
     let imagePath = imageBasePath + alldata[0] + ".jpg";
     // console.log(imagePath)
     let similarityScore = (alldata[1] * 1).toFixed(3);
+    let correctCategory =
+      selections.dictionary[props.selectedImage] ===
+      selections.dictionary[alldata[0]];
     return (
       <div
         key={alldata[0] + "winper"}
         className="iblock similarityfullbox mr5 mb5 positionrelative"
       >
+        <div
+          style={{ backgroundColor: correctCategory ? "green" : "red" }}
+          className="trigreen"
+        ></div>
         <div className="smalldesc mb5">
           dst: {makeFriendly((1 * similarityScore).toFixed(2))}{" "}
         </div>

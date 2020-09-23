@@ -121,7 +121,7 @@ export default function SemanticEx() {
         <div className="flexfull">
           <div className="  mynotif positionrelative h100 lh10 p10 lightbluehightlight maxh16  mb10">
             {
-              <div className=" floatright lightgreyhighlight ml10 pl10 pr10 pb5 mb10 ">
+              <div className=" floatright lightgreyhighlight ml10 pl10 pr10 pb5 ">
                 <div className="boldtext  iblock ">
                   <Toggle
                     id="advancedoptionstoggle"
@@ -139,12 +139,12 @@ export default function SemanticEx() {
             }
             <span className="boldtext mb5">How it works!</span>
             <br />
-            When you select an image (by clicking it), a neural network [
+            When you select an image (by clicking it), a neural network model [
             <span className="uppercase boldtext"> {selections.model.name}</span>
             ]<span className="italics"> looks </span> at the content of all
             images in our dataset and shows you the{" "}
             <strong> top {topSimilar} </strong> most similar images to the
-            selected image.
+            selected image. Click advanced options to select a different model.
           </div>
         </div>
       </div>

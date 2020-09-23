@@ -76,17 +76,11 @@ export default function DatasetView(props) {
         <div>
           <div className="unselectable mt10    flex ">
             <div
-              onClick={() =>
-                show.setter.similarDrawer(!show.getter.similarDrawer)
-              }
-              className=" iblock clickable greymoreinfo flexfull minwidth485 p10"
+              // onClick={() =>
+              //   show.setter.similarDrawer(!show.getter.similarDrawer)
+              // }
+              className=" iblock lightgreyhighlight flexfull minwidth485 p10"
             >
-              {" "}
-              <strong>
-                {" "}
-                {!show.getter.similarDrawer && <span>&#x25BC; </span>}{" "}
-                {props.selections.show.similarDrawer && <span>&#x25B2; </span>}{" "}
-              </strong>
               <strong>Top {props.selections.topSimilar} results </strong> based
               on your search configuration
               <span className="smalldesc">
@@ -99,7 +93,7 @@ export default function DatasetView(props) {
               </span>
             </div>
 
-            <div
+            {/* <div
               // onClick={this.toggleShowCompare.bind(this)}
               className={
                 " boldtext greenmoreinfo clickable bluehighlight justifycenter p10 flex flexcolumn " +
@@ -107,7 +101,7 @@ export default function DatasetView(props) {
               }
             >
               Compare Models
-            </div>
+            </div> */}
 
             {/* <div className="iblock   ">
                         <div className="iblock mr5"> <span className="boldtext"> {this.state.modelsList[this.state.selectedmodel].name.toUpperCase()} </span></div>
