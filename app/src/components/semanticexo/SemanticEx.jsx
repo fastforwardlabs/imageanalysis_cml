@@ -12,6 +12,7 @@ import { Toggle } from "carbon-components-react";
 import "./semanticex.css";
 import DatasetView from "./datasetview/DatasetView";
 import { shuffleData, makeFriendly } from "../helperfunctions/HelperFunctions";
+import ConfigView from "./configview/ConfigView";
 
 export default function SemanticEx() {
   //load useful data
@@ -22,10 +23,12 @@ export default function SemanticEx() {
 
   //   specify state values and setters
   const [selectedDataset, setSelectedDataset] = useState(0);
-  const [selectedModel, setSelectedModel] = useState(0);
+  const [selectedModel, setSelectedModel] = useState(1);
   const [selectedDistanceMetric, setSelectedDistanceMetric] = useState(0);
   const [selectedLayer, setSelectedLayer] = useState(7);
-  const [showAdvanced, setShowAdvanced] = useState(false);
+  const [showAdvanced, setShowAdvanced] = useState(true);
+  const [similarDrawer, setSimilarDrawer] = useState(true);
+  const [advancedDrawer, setAdvancedDrawer] = useState(true);
 
   useEffect(() => {
     document.title = `ConvNet Playground | Semantic Search Explorer`;
@@ -41,13 +44,37 @@ export default function SemanticEx() {
     metric: modelViewDetails.metrics[selectedDistanceMetric],
     topSimilar: topSimilar,
     basePath: process.env.PUBLIC_URL,
-    show: { similarDrawer: true, advanced: showAdvanced },
+    show: {
+      getter: {
+        similarDrawer: similarDrawer,
+        advanced: showAdvanced,
+        advancedDrawer: advancedDrawer,
+      },
+      setter: {
+        similarDrawer: setSimilarDrawer,
+        advancedDrawer: setAdvancedDrawer,
+      },
+    },
     dictionary:
       datasetViewDetails.dictionary[
         modelViewDetails.datasets[selectedDataset].name
       ],
+    config: {
+      getter: {
+        selectedDataset: selectedDataset,
+        selectedModel: selectedModel,
+        selectedDistanceMetric: selectedDistanceMetric,
+        selectedLayer: selectedLayer,
+      },
+      setter: {
+        selectedDataset: setSelectedDataset,
+        selectedModel: setSelectedModel,
+        selectedDistanceMetric: setSelectedDistanceMetric,
+        selectedLayer: setSelectedLayer,
+      },
+    },
   };
-  //   console.log(selections);
+  //   console.log(modelViewDetails["datasets"]);
   return (
     <div>
       <div className=" flex  pb10 ">
@@ -67,7 +94,7 @@ export default function SemanticEx() {
       </div>
 
       <div className="flex ">
-        <div className=" mr10 ">
+        <div className=" mr10 currbox ">
           <div className="boldtext underline pb5 mb5">CURRENT SELECTIONS</div>
           <div className="pb3 mediumdesc uppercase">
             Dataset :{" "}
@@ -94,9 +121,7 @@ export default function SemanticEx() {
         <div className="flexfull">
           <div className="  mynotif positionrelative h100 lh10 p10 lightbluehightlight maxh16  mb10">
             {
-              <div className=" floatright lightgreyhighlight ml10  pr10 pl10 pb10 ">
-                {/* <div className="mediumdesc boldtext"> Advanced Options</div> */}
-
+              <div className=" floatright lightgreyhighlight ml10 pl10 pr10 pb5 mb10 ">
                 <div className="boldtext  iblock ">
                   <Toggle
                     id="advancedoptionstoggle"
@@ -114,14 +139,22 @@ export default function SemanticEx() {
             }
             <span className="boldtext mb5">How it works!</span>
             <br />
-            When you select an image (by clicking it), a neural network{" "}
-            <span className="italics"> looks </span> at the content of all
+            When you select an image (by clicking it), a neural network [
+            <span className="uppercase boldtext"> {selections.model.name}</span>
+            ]<span className="italics"> looks </span> at the content of all
             images in our dataset and shows you the{" "}
             <strong> top {topSimilar} </strong> most similar images to the
             selected image.
           </div>
         </div>
       </div>
+
+      <ConfigView
+        models={modelViewDetails.models}
+        datasets={modelViewDetails.datasets}
+        metrics={modelViewDetails.metrics}
+        selections={selections}
+      ></ConfigView>
 
       <DatasetView
         data={datasetContent}

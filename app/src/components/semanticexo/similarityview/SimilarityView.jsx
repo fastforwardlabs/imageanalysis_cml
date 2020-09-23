@@ -22,28 +22,26 @@ export default function SimilarityView(props) {
     // document.title = `You clicked ${count} times`;
   });
 
+  const selections = props.selections;
+
   const imageBasePath =
-    props.selections.basePath +
+    selections.basePath +
     "/assets/semsearch/datasets/" +
-    props.selections.dataset.name +
+    selections.dataset.name +
     "/";
   const selectedImagePath = imageBasePath + props.selectedImage + ".jpg";
-  const selectedCat = props.selections.dictionary[props.selectedImage];
+  const selectedCat = selections.dictionary[props.selectedImage];
 
-  const topSimilar = props.selections.topSimilar;
+  const topSimilar = selections.topSimilar;
   let simCount = 0;
   let modelScore = 0;
   let totalScore = 0;
   let incorrectResults = [];
 
   for (var i in props.similarityArray.slice(1, topSimilar + 1)) {
-    console.log(
-      String(selectedCat),
-      String(props.selections.dictionary[props.similarityArray[i][0]])
-    );
     if (
       String(selectedCat) ===
-      String(props.selections.dictionary[props.similarityArray[i][0]])
+      String(selections.dictionary[props.similarityArray[i][0]])
     ) {
       simCount++;
       modelScore += (topSimilar - i) / topSimilar;
@@ -91,7 +89,12 @@ export default function SimilarityView(props) {
   });
 
   return (
-    <div className="mt10 mb10">
+    <div
+      style={{
+        display: selections.show.getter.similarDrawer ? "" : "none",
+      }}
+      className=" mb10"
+    >
       <div className="sliderboxcontainer transition3s">
         <div className={" sliderbox topconfig" + (true ? " open" : " closed")}>
           <div className="glowbar transitionw6s mb7 w0"></div>

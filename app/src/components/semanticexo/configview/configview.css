@@ -1,0 +1,74 @@
+.datasetbox {
+  height: 5em;
+  width: 5em;
+  border-bottom: 4px solid #cdcdcd;
+  border-top: 4px solid #cdcdcd;
+  margin: 0px 10px 0px 0px;
+  opacity: 1;
+}
+.datasetbox:hover {
+  /* border-bottom: 4px #0062FF solid; */
+  opacity: 0.7;
+}
+
+.datasetbox.active {
+  border-bottom: 4px #0062ff solid;
+  border-top: 4px #0062ff solid;
+  opacity: 1;
+  /* height: 6.2em; 
+  width: 6.2em; */
+}
+
+.datasettitles {
+  margin: 0px 0px 5px 0px;
+  font-weight: bold;
+  font-size: 0.72em;
+}
+
+.dsselected {
+  border-bottom: 4px #0062ff solid;
+}
+.metrictitle {
+  top: 3.7em;
+  left: 0em;
+  width: 100%;
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.datasetdivbox {
+  max-height: 36em;
+  overflow: scroll;
+}
+
+.datasetclassbar {
+  height: 0.4em;
+  background: rgba(161, 161, 161, 0.9);
+  min-width: 3em;
+}
+.datasetclassbar.active {
+  background: #0062ff;
+}
+
+.datasetclasslist:hover .datasetclassbar {
+  background: #0062ff;
+}
+
+.categorytitle {
+  z-index: 100000;
+  border-bottom: 3px solid rgb(85, 85, 85);
+  background: rgb(85, 85, 85);
+  color: white;
+  padding: 7px 8px 5px 7px;
+}
+.modelconfigdiv > .layerwindow {
+  background: rgba(209, 209, 209, 0.3);
+}
+.layerwindow {
+  max-height: 16.66em;
+  /* border: 2px solid green; */
+  overflow: scroll;
+}

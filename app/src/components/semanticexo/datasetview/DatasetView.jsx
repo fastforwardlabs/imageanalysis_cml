@@ -14,19 +14,21 @@ import SimilarityView from "../similarityview/SimilarityView";
 import { loadJSONData } from "../../helperfunctions/HelperFunctions";
 
 export default function DatasetView(props) {
+  const selections = props.selections;
+  const show = selections.show;
   const [selectedImage, setSelectedImage] = useState(0);
   const [similarityArray, setSimilarityArray] = useState(null);
 
   const similarityPath =
-    props.selections.basePath +
+    selections.basePath +
     "/assets/semsearch/similarity/" +
-    props.selections.dataset.name +
+    selections.dataset.name +
     "/" +
-    props.selections.model.name +
+    selections.model.name +
     "/" +
-    props.selections.metric +
+    selections.metric +
     "/" +
-    props.selections.layer.name +
+    selections.layer.name +
     ".json";
 
   useEffect(() => {
@@ -70,19 +72,19 @@ export default function DatasetView(props) {
     <div className="mt10">
       {/* top results */}
       {/* show top results panel and content */}
-      {props.selections.show.similarDrawer && (
+      {
         <div>
           <div className="unselectable mt10    flex ">
             <div
-              // onClick={props.selections.topSimilar}
+              onClick={() =>
+                show.setter.similarDrawer(!show.getter.similarDrawer)
+              }
               className=" iblock clickable greymoreinfo flexfull minwidth485 p10"
             >
               {" "}
               <strong>
                 {" "}
-                {!props.selections.show.similarDrawer && (
-                  <span>&#x25BC; </span>
-                )}{" "}
+                {!show.getter.similarDrawer && <span>&#x25BC; </span>}{" "}
                 {props.selections.show.similarDrawer && <span>&#x25B2; </span>}{" "}
               </strong>
               <strong>Top {props.selections.topSimilar} results </strong> based
@@ -101,7 +103,7 @@ export default function DatasetView(props) {
               // onClick={this.toggleShowCompare.bind(this)}
               className={
                 " boldtext greenmoreinfo clickable bluehighlight justifycenter p10 flex flexcolumn " +
-                (props.selections.show.advanced ? "" : "displaynone")
+                (show.getter.advanced ? "" : "displaynone")
               }
             >
               Compare Models
@@ -115,7 +117,7 @@ export default function DatasetView(props) {
                     </div> */}
           </div>
         </div>
-      )}
+      }
       {similarityArray && (
         <SimilarityView
           selectedImage={selectedImage}

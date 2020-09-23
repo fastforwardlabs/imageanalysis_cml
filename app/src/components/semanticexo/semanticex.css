@@ -36,3 +36,7 @@
 .greytab {
   border-bottom: 4px solid #cdcdcd;
 }
+
+.currbox {
+  min-width: 380px;
+}
