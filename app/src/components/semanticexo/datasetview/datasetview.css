@@ -38,6 +38,20 @@
 }
 
 .datasetdivbox {
-  max-height: 30em;
+  height: 30em;
   overflow: scroll;
+  /* border: 2px solid red; */
+  margin-bottom: 30px;
+}
+
+.categorybox {
+  height: 3em;
+  width: 100%;
+}
+.categorytitle {
+  z-index: 100000;
+  border-bottom: 3px solid rgb(85, 85, 85);
+  background: rgb(85, 85, 85);
+  color: white;
+  padding: 7px 8px 5px 7px;
 }

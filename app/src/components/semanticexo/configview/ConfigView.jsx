@@ -167,7 +167,7 @@ export default function ConfigView(props) {
           // onClick={() =>
           //   show.setter.advancedDrawer(!show.getter.advancedDrawer)
           // }
-          className="unselectable mt10 p10   flex lightgreyhighlight"
+          className="unselectable mt10 p10  darkborderbottom flex lightgreyhighlight"
         >
           <div className="iblock flexfull minwidth485">
             {/* <strong>

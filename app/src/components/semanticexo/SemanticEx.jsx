@@ -73,6 +73,8 @@ export default function SemanticEx() {
         selectedLayer: setSelectedLayer,
       },
     },
+    classlist: datasetViewDetails.classlist,
+    classes: datasetViewDetails.classes,
   };
   //   console.log(modelViewDetails["datasets"]);
   return (

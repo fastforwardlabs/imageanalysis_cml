@@ -64,7 +64,7 @@
   color: white;
   padding: 7px 8px 5px 7px;
 }
-.modelconfigdiv > .layerwindow {
+.modelconfigdiv {
   background: rgba(209, 209, 209, 0.3);
 }
 .layerwindow {

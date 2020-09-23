@@ -15,6 +15,7 @@ import { loadJSONData } from "../../helperfunctions/HelperFunctions";
 
 export default function DatasetView(props) {
   const selections = props.selections;
+  const classlist = selections.classlist;
   const show = selections.show;
   const [selectedImage, setSelectedImage] = useState(0);
   const [similarityArray, setSimilarityArray] = useState(null);
@@ -32,7 +33,7 @@ export default function DatasetView(props) {
     ".json";
 
   useEffect(() => {
-    console.log("re rendereed effect called");
+    console.log("json reloaded");
     let loadedJSON = loadJSONData(similarityPath);
     loadedJSON.then(function (data) {
       if (data) {
@@ -61,6 +62,59 @@ export default function DatasetView(props) {
     );
   });
 
+  let allDataByCategory = [];
+  let datasetClasses = classlist[selections.dataset.name];
+  console.log(selections.classes);
+  let co = datasetClasses.map((className, index) => {
+    let classcon = selections.classes[selections.dataset.name];
+    let clist = classcon[className].map((classval, index) => {
+      let imagePath =
+        selections.basePath +
+        "/assets/semsearch/datasets/" +
+        selections.dataset.name +
+        "/" +
+        classval +
+        ".jpg";
+      return (
+        <div
+          key={classval + "winper"}
+          className="iblock similarityfullbox mr5 mb5 positionrelative"
+        >
+          <img
+            key={classval + "image"}
+            onClick={() => setSelectedImage(classval)}
+            src={imagePath}
+            alt=""
+            className={
+              "simiimage clickable rad2 " +
+              (selectedImage === classval ? "active" : "")
+            }
+            indexvalue={classval}
+          />
+        </div>
+      );
+    });
+    let header = (
+      <div key={"header" + className} className="iblock mr5 categorymain  mb5 ">
+        <div>
+          <div className=" boldtext categorytitle">
+            {" "}
+            {className.toUpperCase()}{" "}
+          </div>
+          <img
+            src={require("../../../images/bgwhite.png")}
+            alt=""
+            className={"categorybox rad2 "}
+            indexvalue={index}
+          />
+        </div>
+      </div>
+    );
+
+    allDataByCategory.push(header);
+    allDataByCategory.push(clist);
+  });
+
   const datasetTitle = (
     <div className="mb10">
       <span className="boldtext"> Dataset : {props.meta.name}</span>{" "}
@@ -79,7 +133,7 @@ export default function DatasetView(props) {
               // onClick={() =>
               //   show.setter.similarDrawer(!show.getter.similarDrawer)
               // }
-              className=" iblock lightgreyhighlight flexfull minwidth485 p10"
+              className=" iblock darkborderbottom lightgreyhighlight flexfull minwidth485 p10"
             >
               <strong>Top {props.selections.topSimilar} results </strong> based
               on your search configuration
@@ -92,23 +146,6 @@ export default function DatasetView(props) {
                 {props.selections.metric.toUpperCase()} ]
               </span>
             </div>
-
-            {/* <div
-              // onClick={this.toggleShowCompare.bind(this)}
-              className={
-                " boldtext greenmoreinfo clickable bluehighlight justifycenter p10 flex flexcolumn " +
-                (show.getter.advanced ? "" : "displaynone")
-              }
-            >
-              Compare Models
-            </div> */}
-
-            {/* <div className="iblock   ">
-                        <div className="iblock mr5"> <span className="boldtext"> {this.state.modelsList[this.state.selectedmodel].name.toUpperCase()} </span></div>
-                        <div className="iblock">
-                            <div className="smalldesc">  LAYER {this.state.modelsList[this.state.selectedmodel].layers[this.state.selectedlayer].layer_index} / {this.state.modelsList[this.state.selectedmodel].numlayers} </div>
-                        </div>
-                    </div> */}
           </div>
         </div>
       }
@@ -122,13 +159,16 @@ export default function DatasetView(props) {
       )}
       <Tabs selected={0}>
         <Tab id="tab-1" label="All Data">
-          <div className="some-content scrollwindow  datasetdivbox">
+          <div className="scrollwindow  datasetdivbox">
             {datasetTitle}
             {allData}
           </div>
         </Tab>
         <Tab id="tab-2" label="By Category">
-          <div className="some-content">{datasetTitle}</div>
+          <div className="scrollwindow  datasetdivbox">
+            {datasetTitle}
+            {allDataByCategory}
+          </div>
         </Tab>
       </Tabs>
     </div>
