@@ -11,8 +11,6 @@ ConvNet Playground, the prototype created for this report, allows users to explo
 
 ## Semantic Similarity Search
 
-<img src="docs/featextraction.jpg" width="100%">
-
 We define the task of semantic search as follows:
 
 > Given a dataset of existing images, and a new arbitrary image, find a subset of images from the dataset that are most similar to the new image.
