@@ -1,22 +1,32 @@
 # Semantic Image Search with Convolutional Neural Networks
 
-> A prototype that allows you explore how convolutional neural network models. It covers areas like feature extraction and semantic search (image retrieval), visualizations of search query performance for multiple datasets etc.
+This repo explores how convolutional neural network models can be applied to the task of semantic search. It covers feature extraction, semantic search (image retrieval) and visualizations of search query performance for multiple datasets etc.
 
-[<img src="docs/screen.jpg" width="100%">](https://fastforwardlabs.github.io/semsearch/)
-https://github.com/fastforwardlabs/semsearch
+![ConvNet Playground Screenshot](docs/screen.jpg)
 
-## Prototype
+## Overview of Semantic Search
 
-ConvNet Playground, the prototype created for this report, allows users to explore representations learned by a CNN model and has two main parts. The first part - Semantic Search demonstrates an example of using layers from pretrained CNN models to extract features which are then used to implement similarity search. The intuition here is that various layers in a CNN have learned important concepts which allows them extract meaningful representations that capture the similarity between images. The second part of the prototype - Model Explorer is a visualization tool that allows the user inspect features learned by layers in a CNN and in so doing build better intuition on how CNNs work.
+To enable semantic search applications, a few prerequisites stepss are helpful.
 
-## Semantic Similarity Search
+- Extracting semantic representations: In this step, the goal is to construct numeric representation of our data such that similar data items are numerically similar. In this example we use a pretrained convolutional neural network as a feature extractor for all entries in our dataset.
+- Similarity Search: Given a new image (search query), this task focuses on identifying the k most similar items in the dataset. As the size of the dataset increases (think millions of datapoints), it becomes computationally slow to compare search queries with the entire dataset to identify most similar items. To address this, a set of scalable approximate nearest neighbour algorithms have been propossed. In this example, we use the methods implemented in the faiss package.
 
-We define the task of semantic search as follows:
+![ConvNet Playground Screenshot](docs/architecture.jpg)
 
-> Given a dataset of existing images, and a new arbitrary image, find a subset of images from the dataset that are most similar to the new image.
+## Search on Your Own Data
 
-Semantic similarity search is performed as a three step process. First, a pretrained CNN model is used to extract features (represented as vectors) from each image in the dataset. Next, a distance metric is used to compute the distance between each image vector and all other image vectors in the dataset. Finally, to perform a search, we retrieve the precomputed distance values between the searched image and all other images sorted in the order of _closest_ to _farthest_.
+    ├── app
+    │   └── build
+    ├── lib
+    │   ├── **init**.py
+    │   ├── **pycache**
+    │   ├── extract.py
+    │   └── model.py
 
-In practice, there are many choices to be made while implementing a similarity search tool based on convolutional neural networks. An appropriate model architecture needs to be selected, appropriate layers from the model and an appropriate distance metric. The prototype allows the user explore results from these configurations across several datasets.
+This repo provides scripts and examples that can help you get started with semantic search on your own dataset
 
-## Repo Structure
+- Feature Extraction
+
+- Similarity Search
+  - Create an index
+  - Search on index
