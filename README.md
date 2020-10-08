@@ -18,15 +18,13 @@ To enable semantic search applications, a few prerequisites stepss are helpful.
     ├── app
     │   └── build
     ├── lib
-    │   ├── **init**.py
-    │   ├── **pycache**
     │   ├── extract.py
     │   └── model.py
 
-This repo provides scripts and examples that can help you get started with semantic search on your own dataset
+This repo provides scripts and examples that can help you get started with semantic search on your own dataset.
 
-- Feature Extraction
+- `lib/loader.py`: Load data from a directory in numpy arrays.
+- `lib/model.py`: Load a pretrained model in tensorflow for feature extraction.
+- `lib/faissindex.py` : Create a FAISS index.
 
-- Similarity Search
-  - Create an index
-  - Search on index
+The repo also provides a [tutorial](/notebooks/Tutotrial.ipynb) notebook with visualizations that walksthrough the semantic search process.
