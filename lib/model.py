@@ -11,3 +11,7 @@ class Model():
 
         if (model_name == "efficientnetb0"):
             self.model = EfficientNetB0(include_top=False)
+
+    def get_features(self, img):
+        features = self.model.predict(img)
+        return features

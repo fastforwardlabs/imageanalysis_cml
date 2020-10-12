@@ -27,4 +27,4 @@ This repo provides scripts and examples that can help you get started with seman
 - `lib/model.py`: Load a pretrained model in tensorflow for feature extraction.
 - `lib/faissindex.py` : Create a FAISS index.
 
-The repo also provides a [tutorial](/notebooks/Tutotrial.ipynb) notebook with visualizations that walksthrough the semantic search process.
+The repo also provides a [tutorial](/notebooks/Tutorial.ipynb) notebook with visualizations that walksthrough the semantic search process.
