@@ -1,4 +1,5 @@
-from lib import Extractor, Model
+from lib import Model
+from lib import FaissIndex
 
-ex = Extractor()
+
 efficientNetModel = Model(model_name="efficientnetb0")
