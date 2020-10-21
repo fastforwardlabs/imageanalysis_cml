@@ -18,9 +18,9 @@ To enable semantic search applications, a few prerequisites stepss are helpful.
     ├── app
     │   └── build
     ├── lib
-    │   ├── extract.py
+    │   ├── extractor.py
     │   └── model.py
-    │   └── model.py
+    │   └── faissindex.py
 
 This repo provides scripts and examples that can help you get started with semantic search on your own dataset.
 
