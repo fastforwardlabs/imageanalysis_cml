@@ -13,7 +13,7 @@ def test_faiss():
     xq[:, 0] += np.arange(nq) / 1000.
 
     index = FaissIndex(dim=d)
-    index.add(xb)
+    index.add(xb, ids=np.arange(xb.shape[0]))
     k = 6
     distances, idx = index.search(xb[:5], k)
     print(distances.shape, idx.shape)

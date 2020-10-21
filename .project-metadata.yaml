@@ -19,6 +19,7 @@ tasks:
     script: install_deps.py
     arguments: None
     short_summary: Job to install dependencies and download training data.
+    memory: 4
     environment:
       TASK_TYPE: CREATE/RUN_JOB
     kernel: python3
@@ -28,6 +29,23 @@ tasks:
     short_summary: Running install dependencies training job.
     long_summary: >-
       Running the job to install dependencies.
+
+  - type: create_job
+    name: Create index
+    entity_label: create_index
+    script: cml_create_index.py
+    arguments: None
+    short_summary: Job to create search index.
+    memory: 4
+    environment:
+      TASK_TYPE: CREATE/RUN_JOB
+    kernel: python3
+
+  - type: run_job
+    entity_label: create_index
+    short_summary: Running create index job.
+    long_summary: >-
+      Running the job to create index.
 
   - type: start_application
     name: Application to serve UI
