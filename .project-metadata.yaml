@@ -6,11 +6,7 @@ prototype_version: 1.0
 date: "2020-09-29"
 api_version: 1
 
-environment_variables:
-  AWS_ACCESS_KEY:
-    default: "SUPER AWESOME AWS KEY"
-    description: "Access Key ID for accessing S3 bucket"
-    prompt_user: true
+ 
 
 tasks:
   - type: create_job
@@ -31,11 +27,11 @@ tasks:
       Running the job to install dependencies.
 
   - type: create_job
-    name: Create index
+    name: Create FAISS index
     entity_label: create_index
     script: cml_create_index.py
     arguments: None
-    short_summary: Job to create search index.
+    short_summary: Job to create FAISS index.
     memory: 4
     environment:
       TASK_TYPE: CREATE/RUN_JOB
@@ -43,9 +39,9 @@ tasks:
 
   - type: run_job
     entity_label: create_index
-    short_summary: Running create index job.
+    short_summary: Running FAISS index creation job.
     long_summary: >-
-      Running the job to create index.
+      Running FAISS index creation job.
 
   - type: start_application
     name: Application to serve UI

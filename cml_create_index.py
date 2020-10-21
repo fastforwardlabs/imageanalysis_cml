@@ -10,6 +10,5 @@ extractor = Extractor()
 features, ids = extractor.extract(images_dir, efficientnet_model)
 
 index = FaissIndex(features.shape[1])
-print(features.shape, np.array(ids))
 index.add(features, ids=np.array(range(0, len(ids))))
 index.save("faiss")
