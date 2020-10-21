@@ -23,8 +23,8 @@ To enable semantic search applications, a few prerequisites stepss are helpful.
 
 This repo provides scripts and examples that can help you get started with semantic search on your own dataset.
 
-- `lib/loader.py`: Load data from a directory in numpy arrays.
-- `lib/model.py`: Load a pretrained model in tensorflow for feature extraction.
-- `lib/faissindex.py` : Create a FAISS index.
+- `lib/model.py`: Load and run predictions from a pretrained model (tensorflow 2.0).
+- `lib/faissindex.py` : Create, add, search, save and load an FAISS index.
+- `lib/extractor.py`: Given a directory of images, and a model object, return feature representations of all images in the directory and their ids.
 
 The repo also provides a [tutorial](/notebooks/Tutorial.ipynb) notebook with visualizations that walksthrough the semantic search process.
