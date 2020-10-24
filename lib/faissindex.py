@@ -26,9 +26,9 @@ class FaissIndex():
         distances, idx = self.index.search(query, k)
         return distances, idx
 
-    def load(self, load_path):
-        self.index = faiss.read_index(load_path)
+    def load(self, file_name, load_dir="faiss"):
+        self.index = faiss.read_index(os.path.join(load_dir, file_name))
 
-    def save(self, save_path):
+    def save(self, file_name, save_dir="faiss"):
         mkdir(save_dir)
-        faiss.write_index(self.index, save_path)
+        faiss.write_index(self.index, os.path.join(save_dir, file_name))
