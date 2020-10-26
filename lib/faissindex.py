@@ -7,14 +7,17 @@ logger = logging.getLogger(__name__)
 
 
 class FaissIndex():
-    def __init__(self, dim, index_type="flatip"):
-        print("faiss loaded")
+    def __init__(self, dim, index_type="flatip", index_filename=None):
         self.index_type = index_type
-        if (index_type == "flatip"):
-            # self.index = faiss.IndexFlatL2(dim)
-            self.index = faiss.IndexIDMap(faiss.IndexFlatIP(dim))
-        if (index_type == "flatl2"):
-            self.index = faiss.IndexFlatL2(dim)
+
+        if (index_filename):
+            self.load(index_filename)
+        else:
+            if (index_type == "flatip"):
+                # self.index = faiss.IndexFlatL2(dim)
+                self.index = faiss.IndexIDMap(faiss.IndexFlatIP(dim))
+            if (index_type == "flatl2"):
+                self.index = faiss.IndexFlatL2(dim)
 
     def add(self, values, ids=None):
         if self.index_type == "flatl2":

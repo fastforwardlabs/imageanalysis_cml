@@ -1,10 +1,18 @@
 from tensorflow.keras.preprocessing import image as imageprep
 import os
 import numpy as np
+from PIL import Image
 
 
 def image_to_np_array(img_path, image_size):
     img = imageprep.load_img(img_path, target_size=(image_size, image_size))
+    img = imageprep.img_to_array(img)
+    return img
+
+
+def upload_to_np_array(file, image_size):
+    img = Image.open(file)
+    img = img.resize((image_size, image_size))
     img = imageprep.img_to_array(img)
     return img
 
