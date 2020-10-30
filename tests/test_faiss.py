@@ -15,7 +15,7 @@ index = FaissIndex(dim=d)
 
 
 def test_faiss_create():
-    index.add(xb, ids=np.arange(xb.shape[0]))
+    index.add(xb, id_strings=list(range(0, xb.shape[0])))
     k = 6
     distances, idx = index.search(xb[:5], k)
     print(distances.shape, idx.shape)
@@ -23,8 +23,8 @@ def test_faiss_create():
 
 
 def test_faiss_save():
-    index.save("faiss_test.index")
+    index.save("faiss_test")
 
 
 def test_faiss_load():
-    index.save("faiss_test.index")
+    index.save("faiss_test")

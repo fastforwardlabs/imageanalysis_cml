@@ -10,12 +10,12 @@ efficientnet_model = Model(model_name="efficientnetb0")
 extractor = Extractor()
 
 
-def create_index(image_dir, index_filename):
+def create_index(image_dir, index_dir):
     features, ids = extractor.extract_from_dir(image_dir, efficientnet_model)
     index = FaissIndex(features.shape[1])
-    index.add(features, ids=np.array(range(0, len(ids))))
-    index.save(index_filename)
+    index.add(features, id_strings=ids)
+    index.save(index_dir)
 
 
-create_index(fashion_images_dir, "fashion200.index")
-create_index(iconic_images_dir, "iconic200.index")
+create_index(fashion_images_dir, "faiss/fashion200")
+create_index(iconic_images_dir, "faiss/iconic200")

@@ -21,8 +21,8 @@ from PIL import Image
 
 logging.basicConfig(level=logging.INFO)
 index = {}
-index["fashion200"] = FaissIndex(0, index_filename="fashion200.index")
-index["iconic200"] = FaissIndex(0, index_filename="iconic200.index")
+index["fashion200"] = FaissIndex(0, index_dir="faiss/fashion200")
+index["iconic200"] = FaissIndex(0, index_dir="faiss/iconic200")
 
 efficientnet_model = Model(model_name="efficientnetb0")
 extractor = Extractor()
@@ -40,7 +40,7 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 image_size = 224
-k = 10
+k = 20
 
 
 def get_similar(file, dataset_name):
@@ -48,7 +48,8 @@ def get_similar(file, dataset_name):
     image_array = np.asarray([image_array])
     features = extractor.extract(image_array, efficientnet_model)
     distances, idx = index[dataset_name].search(features, k)
-    return distances, idx
+    id_strings = index[dataset_name].decode_ids(idx.tolist()[0])
+    return distances, id_strings
 
 
 @app.route('/')
@@ -64,12 +65,9 @@ def search():
         print(request.form)
         if 'file' in request.files:
             file = request.files['file']
-            print(file)
-            print(file.filename)
             distances, idx = get_similar(file, request.form["dataset"])
-            print(distances, idx)
             result["distances"] = distances.tolist()[0]
-            result["ids"] = idx.tolist()[0]
+            result["ids"] = idx
         else:
             print("no file found")
 

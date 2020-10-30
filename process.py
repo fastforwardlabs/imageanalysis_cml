@@ -2,4 +2,5 @@ from lib import Model
 from lib import FaissIndex
 
 
-efficientNetModel = Model(model_name="efficientnetb0")
+index = FaissIndex(0, index_dir="faiss/fashion200")
+print(index.id_map["168"])
